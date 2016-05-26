@@ -1,0 +1,25 @@
+{
+	"name": "sop/gcm",
+	"description": "A PHP library for Galois/Counter Mode encryption with AES.",
+	"homepage": "https://github.com/sop/gcm",
+	"license": "MIT",
+	"type": "library",
+	"keywords": ["gcm", "galois", "aes", "encrypt", "decrypt"],
+	"authors": [
+		{
+			"name": "Joni Eskelinen",
+			"email": "jonieske@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.6.3",
+		"ext-openssl": "*",
+		"ext-gmp": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"GCM\\": "lib/GCM/"
+		}
+	}
+}
