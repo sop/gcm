@@ -30,14 +30,17 @@ class GHASH
 	 * @param string $subkey Hash subkey
 	 */
 	public function __construct($subkey) {
+		if (strlen($subkey) != 16) {
+			throw new \InvalidArgumentException("Subkey must be 128 bits.");
+		}
 		$this->_subkey = $subkey;
 	}
 	
 	/**
 	 * Compute hash.
 	 *
-	 * @param string $X
-	 * @return string
+	 * @param string $X Input string
+	 * @return string Hash
 	 */
 	public function compute($X) {
 		$len = strlen($X);
