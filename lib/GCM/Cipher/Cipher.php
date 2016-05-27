@@ -11,9 +11,9 @@ interface Cipher
 	/**
 	 * Encrypt data.
 	 *
-	 * @param string $data
-	 * @param string $key
-	 * @return string
+	 * @param string $data Data to encrypt
+	 * @param string $key Encryption key
+	 * @return string Encrypted data
 	 */
 	public function encrypt($data, $key);
 }
