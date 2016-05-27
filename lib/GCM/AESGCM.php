@@ -2,7 +2,7 @@
 
 namespace GCM;
 
-use GCM\Cipher\AESCipher;
+use GCM\Cipher\AES\AESCipher;
 
 
 /**
@@ -20,8 +20,7 @@ abstract class AESGCM
 	 * @return array Tuple of ciphertext and authentication tag
 	 */
 	public static function encrypt($plaintext, $aad, $key, $iv) {
-		$gcm = new GCM(new AESCipher());
-		return $gcm->encrypt($plaintext, $aad, $key, $iv);
+		return self::_getGCM(strlen($key))->encrypt($plaintext, $aad, $key, $iv);
 	}
 	
 	/**
@@ -35,7 +34,17 @@ abstract class AESGCM
 	 * @return string Plaintext
 	 */
 	public static function decrypt($ciphertext, $auth_tag, $aad, $key, $iv) {
-		$gcm = new GCM(new AESCipher());
-		return $gcm->decrypt($ciphertext, $auth_tag, $aad, $key, $iv);
+		return self::_getGCM(strlen($key))->decrypt($ciphertext, $auth_tag, 
+			$aad, $key, $iv);
+	}
+	
+	/**
+	 * Get GCM instance.
+	 *
+	 * @param int $keylen Key length in bytes
+	 * @return GCM
+	 */
+	protected static function _getGCM($keylen) {
+		return new GCM(AESCipher::fromKeyLength($keylen));
 	}
 }
