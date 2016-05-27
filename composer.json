@@ -4,7 +4,8 @@
 	"homepage": "https://github.com/sop/gcm",
 	"license": "MIT",
 	"type": "library",
-	"keywords": ["gcm", "galois", "aes", "encrypt", "decrypt"],
+	"keywords": ["gcm", "galois", "galois counter mode",
+		"aes", "aes-gcm", "encrypt", "decrypt"],
 	"authors": [
 		{
 			"name": "Joni Eskelinen",
