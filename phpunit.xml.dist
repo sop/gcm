@@ -14,6 +14,9 @@
 		<testsuite name="NIST AES Test Vectors">
 			<directory>test/nist-aes</directory>
 		</testsuite>
+		<testsuite name="MACsec Test Vectors">
+			<directory>test/macsec-aes</directory>
+		</testsuite>
 	</testsuites>
 	<filter>
 		<whitelist
