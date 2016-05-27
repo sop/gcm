@@ -34,12 +34,21 @@ class GCM
 	protected $_cipher;
 	
 	/**
+	 * Authentication tag length in bytes.
+	 *
+	 * @var int
+	 */
+	protected $_tagLength;
+	
+	/**
 	 * Constructor.
 	 *
-	 * @param Cipher $cipher
+	 * @param Cipher $cipher Cipher implementation
+	 * @param int $tag_length Authentication tag length
 	 */
-	public function __construct(Cipher $cipher) {
+	public function __construct(Cipher $cipher, $tag_length = 16) {
 		$this->_cipher = $cipher;
+		$this->_tagLength = $tag_length;
 	}
 	
 	/**
@@ -151,7 +160,7 @@ class GCM
 		$data = self::_pad128($A) . self::_pad128($C) .
 			 self::_uint64(strlen($A) << 3) . self::_uint64(strlen($C) << 3);
 		$S = $ghash($data);
-		return substr($this->_gctr($J0, $S, $K), 0, 16);
+		return substr($this->_gctr($J0, $S, $K), 0, $this->_tagLength);
 	}
 	
 	/**
@@ -202,7 +211,7 @@ class GCM
 	 * String is interpreted as an unsigned integer with big endian order and
 	 * the most significant byte first.
 	 *
-	 * @param string $data
+	 * @param string $data Binary data
 	 * @return \GMP
 	 */
 	public static function strToGMP($data) {
@@ -215,11 +224,11 @@ class GCM
 	 * Returned string represents an unsigned integer with big endian order and
 	 * the most significant byte first.
 	 *
-	 * @param \GMP $num
+	 * @param \GMP $num GMP number
 	 * @param int $size Width of the string in bytes
-	 * @return string
+	 * @return string Binary data
 	 */
-	public static function gmpToStr($num, $size) {
+	public static function gmpToStr(\GMP $num, $size) {
 		$data = gmp_export($num, 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
 		$len = strlen($data);
 		if ($len < $size) {
