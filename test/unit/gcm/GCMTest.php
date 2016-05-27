@@ -69,7 +69,7 @@ class GCMTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @depends testCreate
 	 * @depends testEncrypt
-	 * @expectedException UnexpectedValueException
+	 * @expectedException GCM\Exception\AuthenticationException
 	 *
 	 * @param GCM $gcm
 	 * @param array $result

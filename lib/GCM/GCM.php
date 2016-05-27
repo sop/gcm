@@ -3,6 +3,7 @@
 namespace GCM;
 
 use GCM\Cipher\Cipher;
+use GCM\Exception\AuthenticationException;
 
 
 /**
@@ -58,6 +59,7 @@ class GCM
 	 * @param string $A Additional authenticated data
 	 * @param string $K Encryption key
 	 * @param string $IV Initialization vector
+	 * @throws \RuntimeException For generic errors
 	 * @return array Tuple of ciphertext <code>C</code> and authentication tag
 	 *         <code>T</code>
 	 */
@@ -80,7 +82,8 @@ class GCM
 	 * @param string $A Additional authenticated data
 	 * @param string $K Encryption key
 	 * @param string $IV Initialization vector
-	 * @throws \UnexpectedValueException
+	 * @throws \AuthenticationException If message authentication fails
+	 * @throws \RuntimeException For generic errors
 	 * @return string Plaintext <code>P</code>
 	 */
 	public function decrypt($C, $T, $A, $K, $IV) {
@@ -91,7 +94,7 @@ class GCM
 		$T2 = $this->_computeAuthTag($A, $C, $J0, $K, $ghash);
 		// check that authentication tag matches
 		if ($T !== $T2) {
-			throw new \UnexpectedValueException("Authentication failed.");
+			throw new AuthenticationException("Authentication failed.");
 		}
 		// decrypt
 		return $this->_gctr(self::_inc32($J0), $C, $K);

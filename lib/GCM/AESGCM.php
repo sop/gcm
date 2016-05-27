@@ -3,6 +3,7 @@
 namespace GCM;
 
 use GCM\Cipher\AES\AESCipher;
+use GCM\Exception\AuthenticationException;
 
 
 /**
@@ -31,6 +32,7 @@ abstract class AESGCM
 	 * @param string $aad Additional authenticated data
 	 * @param string $key Encryption key
 	 * @param string $iv Initialization vector
+	 * @throws AuthenticationException If message authentication fails
 	 * @return string Plaintext
 	 */
 	public static function decrypt($ciphertext, $auth_tag, $aad, $key, $iv) {
