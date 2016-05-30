@@ -33,6 +33,13 @@ abstract class AESCipher implements Cipher
 	abstract protected function _cipherName();
 	
 	/**
+	 * Get the key size in bytes.
+	 *
+	 * @return int
+	 */
+	abstract protected function _keySize();
+	
+	/**
 	 * Get AES cipher instance by key length.
 	 *
 	 * @param int $len Key length in bytes
@@ -49,7 +56,17 @@ abstract class AESCipher implements Cipher
 		return new $cls();
 	}
 	
+	/**
+	 *
+	 * @see \GCM\Cipher\Cipher::encrypt()
+	 * @throws \UnexpectedValueException If key size is incorrect
+	 */
 	public function encrypt($data, $key) {
+		$key_size = $this->_keySize();
+		if (strlen($key) != $key_size) {
+			throw new \UnexpectedValueException(
+				"Key size must be $key_size bytes.");
+		}
 		$result = openssl_encrypt($data, $this->_cipherName(), $key, 
 			OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
 		if (false === $result) {

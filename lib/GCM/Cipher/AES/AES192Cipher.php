@@ -11,4 +11,8 @@ class AES192Cipher extends AESCipher
 	protected function _cipherName() {
 		return "AES-192-ECB";
 	}
+	
+	protected function _keySize() {
+		return 24;
+	}
 }

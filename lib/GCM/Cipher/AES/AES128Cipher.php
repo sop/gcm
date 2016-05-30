@@ -11,4 +11,8 @@ class AES128Cipher extends AESCipher
 	protected function _cipherName() {
 		return "AES-128-ECB";
 	}
+	
+	protected function _keySize() {
+		return 16;
+	}
 }
