@@ -4,6 +4,10 @@ use GCM\Cipher\AES\AES128Cipher;
 use GCM\Cipher\AES\AESCipher;
 
 
+/**
+ * @group cipher
+ * @group aes
+ */
 class AESCipherTest extends PHPUnit_Framework_TestCase
 {
 	/**
@@ -18,6 +22,6 @@ class AESCipherTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testEncryptionFail() {
 		$cipher = new AES128Cipher();
-		$cipher->encrypt("fail", "");
+		$cipher->encrypt("fail", "0123456789abcdef");
 	}
 }

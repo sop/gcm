@@ -4,6 +4,9 @@ use GCM\Cipher\AES\AES128Cipher;
 use GCM\GCM;
 
 
+/**
+ * @group gcm
+ */
 class GCMTest extends PHPUnit_Framework_TestCase
 {
 	const PLAINTEXT = "My hovercraft is full of eels.";

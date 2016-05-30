@@ -3,6 +3,10 @@
 use GCM\GHASH;
 
 
+/**
+ * @group gcm
+ * @group ghash
+ */
 class GHASHTest extends PHPUnit_Framework_TestCase
 {
 	const SUBKEY = "0123456789abcdef";

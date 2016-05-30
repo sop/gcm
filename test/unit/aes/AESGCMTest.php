@@ -3,6 +3,10 @@
 use GCM\AESGCM;
 
 
+/**
+ * @group gcm
+ * @group aes
+ */
 class AESGCMTest extends PHPUnit_Framework_TestCase
 {
 	const PLAINTEXT = "PAYLOAD";
