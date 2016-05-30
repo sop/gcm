@@ -31,7 +31,7 @@ class GHASH
 	 */
 	public function __construct($subkey) {
 		if (strlen($subkey) != 16) {
-			throw new \InvalidArgumentException("Subkey must be 128 bits.");
+			throw new \LengthException("Subkey must be 128 bits.");
 		}
 		$this->_subkey = $subkey;
 	}
