@@ -11,6 +11,9 @@
 		<testsuite name="Unit">
 			<directory>test/unit</directory>
 		</testsuite>
+		<testsuite name="Integration">
+			<directory>test/integration</directory>
+		</testsuite>
 		<testsuite name="NIST AES Test Vectors">
 			<directory>test/nist-aes</directory>
 		</testsuite>

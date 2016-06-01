@@ -101,6 +101,13 @@ class GCMTest extends PHPUnit_Framework_TestCase
 		$this->assertContainsOnly("string", $result);
 	}
 	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testUnsupportedTagLengthFail() {
+		new GCM(new AES128Cipher(), 17);
+	}
+	
 	public function testCustomTagLength() {
 		$gcm = new GCM(new AES128Cipher(), 8);
 		list($ciphertext, $auth_tag) = $gcm->encrypt("", "", self::KEY, "");
