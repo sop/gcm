@@ -54,10 +54,11 @@ class GCM
 	 *
 	 * @param Cipher $cipher Cipher implementation
 	 * @param int $tag_length Authentication tag length in bytes
+	 * @throws \DomainException If tag length is not supported
 	 */
 	public function __construct(Cipher $cipher, $tag_length = 16) {
 		if (!in_array($tag_length << 3, self::SUPPORTED_T_LEN)) {
-			throw new \InvalidArgumentException(
+			throw new \DomainException(
 				"Tag length $tag_length is not supported.");
 		}
 		$this->_cipher = $cipher;

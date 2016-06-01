@@ -102,7 +102,7 @@ class GCMTest extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
-	 * @expectedException InvalidArgumentException
+	 * @expectedException DomainException
 	 */
 	public function testUnsupportedTagLengthFail() {
 		new GCM(new AES128Cipher(), 17);
