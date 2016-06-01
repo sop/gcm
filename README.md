@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sop/gcm.svg?branch=master)](https://travis-ci.org/sop/gcm)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sop/gcm/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sop/gcm/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/sop/gcm/badge.svg?branch=master)](https://coveralls.io/github/sop/gcm?branch=master)
 [![License](https://poser.pugx.org/sop/gcm/license)](https://github.com/sop/gcm/blob/master/LICENSE)
 
