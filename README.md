@@ -33,7 +33,7 @@ Outputs:
 
 ### Decrypt
 Decrypt a ciphertext created above. Additional authenticated data must
-be the same, otherwise authentication fails and exception shall be thrown.
+be the same, otherwise authentication fails and an exception shall be thrown.
 ```php
 $plaintext = AESGCM::decrypt($ciphertext, $auth_tag,
 	"Additional info", "some 128 bit key", "random string");
@@ -42,6 +42,32 @@ echo $plaintext;
 Outputs:
 
     Meet me at the pier at midnight.
+
+### Using explicit cipher method and tag length
+Encrypt a message without additional authentication data using AES-192
+as an underlying cipher and produce a 104-bit (13 bytes) authentication tag.
+```php
+$key = "012345678901234567890123"; // 192-bit encryption key
+$iv = hex2bin("beadfacebadc0fee"); // random initialization vector
+$gcm = new GCM(new AES192Cipher(), 13);
+list($ciphertext, $auth_tag) = $gcm->encrypt(
+	"Secret message.", "", $key, $iv);
+echo bin2hex($ciphertext) . "\n" . bin2hex($auth_tag);
+```
+Outputs:
+
+    7bcd4e423016213c60a3c0a3e3fc0c
+    027b14cfea0a2307649fc67b1d
+
+Decrypting the output from above.
+```php
+$plaintext = $gcm->decrypt(
+	$ciphertext, $auth_tag, "", $key, $iv);
+echo $plaintext;
+```
+Outputs:
+
+    Secret message.
 
 ## License
 This project is licensed under the MIT License.
