@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/sop/gcm.svg?branch=master)](https://travis-ci.org/sop/gcm)
 [![Coverage Status](https://coveralls.io/repos/github/sop/gcm/badge.svg?branch=master)](https://coveralls.io/github/sop/gcm?branch=master)
-[![License](https://poser.pugx.org/sop/gcm/license)](https://packagist.org/packages/sop/gcm)
+[![License](https://poser.pugx.org/sop/gcm/license)](https://github.com/sop/gcm/blob/master/LICENSE)
 
 # GCM
 A PHP library for Galois/Counter Mode
