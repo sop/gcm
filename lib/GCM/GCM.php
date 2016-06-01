@@ -196,7 +196,8 @@ class GCM
 	/**
 	 * Increment 32 rightmost bits of the counter block.
 	 *
-	 * @param unknown $X
+	 * @param string $X
+	 * @return string
 	 */
 	private static function _inc32($X) {
 		$Y = substr($X, 0, -4);
