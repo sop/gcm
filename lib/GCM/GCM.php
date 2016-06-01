@@ -28,6 +28,14 @@ class GCM
 	const ZB_128 = self::ZB_64 . self::ZB_64;
 	
 	/**
+	 * Array of supported t-values, that is, the bit length of the
+	 * authentication tag.
+	 *
+	 * @var array
+	 */
+	const SUPPORTED_T_LEN = array(128, 120, 112, 104, 96, 64, 32);
+	
+	/**
 	 * Cipher.
 	 *
 	 * @var Cipher $_cipher
@@ -45,9 +53,13 @@ class GCM
 	 * Constructor.
 	 *
 	 * @param Cipher $cipher Cipher implementation
-	 * @param int $tag_length Authentication tag length
+	 * @param int $tag_length Authentication tag length in bytes
 	 */
 	public function __construct(Cipher $cipher, $tag_length = 16) {
+		if (!in_array($tag_length << 3, self::SUPPORTED_T_LEN)) {
+			throw new \InvalidArgumentException(
+				"Tag length $tag_length is not supported.");
+		}
 		$this->_cipher = $cipher;
 		$this->_tagLength = $tag_length;
 	}
