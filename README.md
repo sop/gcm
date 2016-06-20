@@ -8,7 +8,8 @@ A PHP library for Galois/Counter Mode
 ([GCM](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf))
 encryption.
 
-Supports AES-GCM with 128, 192 and 256-bit key sizes.
+Supports AES-GCM with 128, 192 and 256-bit key sizes and specified
+authentication tag lengths.
 
 ## Installation
 This library is available on
@@ -32,6 +33,8 @@ Outputs:
     e0ce4d816a3f341f0062c6dc99b83692ad265fc4b34df2a3b593dfdb2ecdaed3
     9e2ffd7fa0df4d275ad0300416e23bdd
 
+See [`/examples`](https://github.com/sop/gcm/blob/master/examples/encrypt.php) for a detailed version.
+
 ### Decrypt
 Decrypt a ciphertext created above. Additional authenticated data must
 be the same, otherwise authentication fails and an exception shall be thrown.
@@ -44,8 +47,11 @@ Outputs:
 
     Meet me at the pier at midnight.
 
+See [`/examples`](https://github.com/sop/gcm/blob/master/examples/decrypt.php) for a detailed version.
+
 ### Using explicit cipher method and tag length
-Encrypt a message without additional authentication data using AES-192
+[Encrypt](https://github.com/sop/gcm/blob/master/examples/explicit-encrypt.php)
+a message without additional authenticated data using AES-192
 as an underlying cipher and produce a 104-bit (13 bytes) authentication tag.
 ```php
 $key = "012345678901234567890123"; // 192-bit encryption key
@@ -60,7 +66,8 @@ Outputs:
     7bcd4e423016213c60a3c0a3e3fc0c
     027b14cfea0a2307649fc67b1d
 
-Decrypting the output from above.
+[Decrypting](https://github.com/sop/gcm/blob/master/examples/explicit-decrypt.php)
+the output from above.
 ```php
 $plaintext = $gcm->decrypt(
 	$ciphertext, $auth_tag, "", $key, $iv);
@@ -69,6 +76,10 @@ echo $plaintext;
 Outputs:
 
     Secret message.
+
+## References
+* [GCM Specification](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf)
+* [NIST Special Publication 800-38D](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf)
 
 ## License
 This project is licensed under the MIT License.
