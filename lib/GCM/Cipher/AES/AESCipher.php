@@ -60,6 +60,8 @@ abstract class AESCipher implements Cipher
 	 *
 	 * @see \GCM\Cipher\Cipher::encrypt()
 	 * @throws \UnexpectedValueException If key size is incorrect
+	 * @throws \RuntimeException For generic errors
+	 * @return string
 	 */
 	public function encrypt($data, $key) {
 		$key_size = $this->_keySize();

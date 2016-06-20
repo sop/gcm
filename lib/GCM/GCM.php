@@ -9,6 +9,8 @@ use GCM\Exception\AuthenticationException;
 /**
  * Implements encryption and decryption in Galois/Counter Mode.
  *
+ * @link
+ *       http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf
  * @link http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
  */
 class GCM
@@ -30,6 +32,10 @@ class GCM
 	/**
 	 * Array of supported t-values, that is, the bit length of the
 	 * authentication tag.
+	 *
+	 * See NIST SP-800-38D section 5.2.1.2 for the details.
+	 *
+	 * @internal
 	 *
 	 * @var array
 	 */
@@ -116,6 +122,8 @@ class GCM
 	/**
 	 * Generate pre-counter block.
 	 *
+	 * See NIST SP-300-38D section 7.1 step 2 for the details.
+	 *
 	 * @param string $IV Initialization vector
 	 * @param GHASH $ghash GHASH functor
 	 * @return string
@@ -132,6 +140,8 @@ class GCM
 	
 	/**
 	 * Apply GCTR algorithm.
+	 *
+	 * See NIST SP-300-38D section 6.5 for the details.
 	 *
 	 * @param string $ICB Initial counter block
 	 * @param string $X Input data
@@ -165,6 +175,8 @@ class GCM
 	/**
 	 * Compute authentication tag
 	 *
+	 * See NIST SP-300-38D section 7.1 steps 5-6 for the details.
+	 *
 	 * @param string $A Additional authenticated data
 	 * @param string $C Ciphertext
 	 * @param string $J0 Pre-counter block
@@ -195,6 +207,8 @@ class GCM
 	
 	/**
 	 * Increment 32 rightmost bits of the counter block.
+	 *
+	 * See NIST SP-300-38D section 6.2 for the details.
 	 *
 	 * @param string $X
 	 * @return string

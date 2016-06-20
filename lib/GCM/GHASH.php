@@ -6,6 +6,8 @@ namespace GCM;
 /**
  * Implements GHASH function.
  *
+ * This algorithm is specified in NIST SP-300-38D section 6.4.
+ *
  * @link http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
  */
 class GHASH
@@ -71,7 +73,7 @@ class GHASH
 	/**
 	 * Apply block multiplication operation.
 	 *
-	 * See NIST SP 800-38D, chapter 6.3 for details.
+	 * See NIST SP-800-38D, chapter 6.3 for the details.
 	 *
 	 * @param string $X
 	 * @param string $Y
