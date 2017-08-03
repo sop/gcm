@@ -5,16 +5,16 @@
  * php explicit-encrypt.php | php explicit-decrypt.php
  */
 
-use GCM\Cipher\AES\AES192Cipher;
 use GCM\GCM;
+use GCM\Cipher\AES\AES192Cipher;
 
 require dirname(__DIR__) . "/vendor/autoload.php";
 
 // 192-bit encryption key
 $key = "012345678901234567890123";
 // read ciphertext, authentication tag and initialization vector from the stdin
-list($ciphertext, $auth_tag, $iv) = array_map("hex2bin", 
-	file("php://stdin", FILE_IGNORE_NEW_LINES));
+list($ciphertext, $auth_tag, $iv) = array_map("hex2bin",
+    file("php://stdin", FILE_IGNORE_NEW_LINES));
 // configure GCM object with AES-192 cipher and 13-bytes long authentication tag
 $gcm = new GCM(new AES192Cipher(), 13);
 // decrypt and authenticate

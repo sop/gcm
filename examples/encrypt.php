@@ -22,6 +22,5 @@ $iv = openssl_random_pseudo_bytes(12);
 list($ciphertext, $auth_tag) = AESGCM::encrypt($plaintext, $aad, $key, $iv);
 // print the ciphertext along with the authentication tag
 // and the initialization vector
-echo bin2hex($ciphertext) . "\n" .
-	bin2hex($auth_tag) . "\n" .
-	bin2hex($iv) . "\n";
+echo bin2hex($ciphertext) . "\n" . bin2hex($auth_tag) . "\n" . bin2hex($iv) .
+     "\n";
