@@ -1,6 +1,7 @@
 <?php
 
 use GCM\AESGCM;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Perform test vectors from GCM specification appendix B.
@@ -8,7 +9,7 @@ use GCM\AESGCM;
  * @link
  *       http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf
  */
-class NISTAESTestVectorsTest extends PHPUnit_Framework_TestCase
+class NISTAESTestVectorsTest extends TestCase
 {
     /**
      * @dataProvider provideCases

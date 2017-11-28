@@ -3,12 +3,13 @@
 use GCM\Cipher\Cipher;
 use GCM\Cipher\AES\AES128Cipher;
 use GCM\Cipher\AES\AESCipher;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group cipher
  * @group aes
  */
-class AES128CipherTest extends PHPUnit_Framework_TestCase
+class AES128CipherTest extends TestCase
 {
     const KEY = "0123456789abcdef";
     

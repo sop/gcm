@@ -2,8 +2,9 @@
 
 use GCM\GCM;
 use GCM\Cipher\AES\AES128Cipher;
+use PHPUnit\Framework\TestCase;
 
-class TagLengthTest extends PHPUnit_Framework_TestCase
+class TagLengthTest extends TestCase
 {
     const PLAINTEXT = "My hovercraft is full of eels.";
     

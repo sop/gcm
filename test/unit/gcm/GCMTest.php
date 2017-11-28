@@ -2,11 +2,12 @@
 
 use GCM\GCM;
 use GCM\Cipher\AES\AES128Cipher;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group gcm
  */
-class GCMTest extends PHPUnit_Framework_TestCase
+class GCMTest extends TestCase
 {
     const PLAINTEXT = "My hovercraft is full of eels.";
     

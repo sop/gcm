@@ -1,12 +1,13 @@
 <?php
 
 use GCM\AESGCM;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group gcm
  * @group aes
  */
-class AESGCMTest extends PHPUnit_Framework_TestCase
+class AESGCMTest extends TestCase
 {
     const PLAINTEXT = "PAYLOAD";
     

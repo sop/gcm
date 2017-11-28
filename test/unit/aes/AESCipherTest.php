@@ -2,12 +2,13 @@
 
 use GCM\Cipher\AES\AES128Cipher;
 use GCM\Cipher\AES\AESCipher;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group cipher
  * @group aes
  */
-class AESCipherTest extends PHPUnit_Framework_TestCase
+class AESCipherTest extends TestCase
 {
     /**
      * @expectedException UnexpectedValueException

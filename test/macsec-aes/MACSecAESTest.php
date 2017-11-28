@@ -1,6 +1,7 @@
 <?php
 
 use GCM\AESGCM;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Perform test vectors from "MACsec GCM - AES Test Vectors" document.
@@ -8,7 +9,7 @@ use GCM\AESGCM;
  * @link
  *       http://www.ieee802.org/1/files/public/docs2011/bn-randall-test-vectors-0511-v1.pdf
  */
-class MACSecAESTestVectorsTest extends PHPUnit_Framework_TestCase
+class MACSecAESTestVectorsTest extends TestCase
 {
     /**
      * @dataProvider provideCases

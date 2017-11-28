@@ -1,12 +1,13 @@
 <?php
 
 use GCM\GHASH;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group gcm
  * @group ghash
  */
-class GHASHTest extends PHPUnit_Framework_TestCase
+class GHASHTest extends TestCase
 {
     const SUBKEY = "0123456789abcdef";
     
