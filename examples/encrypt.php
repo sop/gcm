@@ -5,7 +5,7 @@
  * php encrypt.php
  */
 
-use GCM\AESGCM;
+use Sop\GCM\AESGCM;
 
 require dirname(__DIR__) . "/vendor/autoload.php";
 

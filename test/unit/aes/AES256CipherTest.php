@@ -1,9 +1,9 @@
 <?php
 
-use GCM\Cipher\Cipher;
-use GCM\Cipher\AES\AES256Cipher;
-use GCM\Cipher\AES\AESCipher;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\Cipher\Cipher;
+use Sop\GCM\Cipher\AES\AES256Cipher;
+use Sop\GCM\Cipher\AES\AESCipher;
 
 /**
  * @group cipher

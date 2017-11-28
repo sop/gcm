@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace GCM\Cipher\AES;
+namespace Sop\GCM\Cipher\AES;
 
-use GCM\Cipher\Cipher;
+use Sop\GCM\Cipher\Cipher;
 
 /**
  * Base class for AES ciphers for the GCM.
@@ -60,7 +60,7 @@ abstract class AESCipher implements Cipher
     
     /**
      *
-     * @see \GCM\Cipher\Cipher::encrypt()
+     * @see \Sop\GCM\Cipher\Cipher::encrypt()
      * @throws \UnexpectedValueException If key size is incorrect
      * @throws \RuntimeException For generic errors
      * @return string

@@ -1,7 +1,7 @@
 <?php
 
-use GCM\AESGCM;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\AESGCM;
 
 /**
  * @group gcm

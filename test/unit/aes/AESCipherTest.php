@@ -1,8 +1,8 @@
 <?php
 
-use GCM\Cipher\AES\AES128Cipher;
-use GCM\Cipher\AES\AESCipher;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\Cipher\AES\AES128Cipher;
+use Sop\GCM\Cipher\AES\AESCipher;
 
 /**
  * @group cipher

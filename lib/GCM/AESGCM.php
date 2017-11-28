@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace GCM;
+namespace Sop\GCM;
 
-use GCM\Cipher\AES\AESCipher;
+use Sop\GCM\Cipher\AES\AESCipher;
 
 /**
  * Implements AES-GCM encryption.
@@ -34,8 +34,8 @@ abstract class AESGCM
      * @param string $aad Additional authenticated data
      * @param string $key Encryption key
      * @param string $iv Initialization vector
-     * @throws \GCM\Exception\AuthenticationException If message authentication
-     *         fails
+     * @throws \Sop\GCM\Exception\AuthenticationException If message
+     *         authentication fails
      * @return string Plaintext
      */
     public static function decrypt(string $ciphertext, string $auth_tag,

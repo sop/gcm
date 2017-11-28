@@ -1,8 +1,8 @@
 <?php
 
-use GCM\GCM;
-use GCM\Cipher\AES\AES128Cipher;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\GCM;
+use Sop\GCM\Cipher\AES\AES128Cipher;
 
 /**
  * @group gcm
@@ -77,7 +77,7 @@ class GCMTest extends TestCase
     /**
      * @depends testCreate
      * @depends testEncrypt
-     * @expectedException GCM\Exception\AuthenticationException
+     * @expectedException Sop\GCM\Exception\AuthenticationException
      *
      * @param GCM $gcm
      * @param array $result

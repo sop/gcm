@@ -1,8 +1,8 @@
 <?php
 
-use GCM\GCM;
-use GCM\Cipher\AES\AES128Cipher;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\GCM;
+use Sop\GCM\Cipher\AES\AES128Cipher;
 
 class TagLengthTest extends TestCase
 {

@@ -30,7 +30,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"GCM\\": "lib/GCM/"
+			"Sop\\GCM\\": "lib/GCM/"
 		}
 	}
 }

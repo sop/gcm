@@ -5,7 +5,7 @@
  * php encrypt.php | php decrypt.php
  */
 
-use GCM\AESGCM;
+use Sop\GCM\AESGCM;
 
 require dirname(__DIR__) . "/vendor/autoload.php";
 

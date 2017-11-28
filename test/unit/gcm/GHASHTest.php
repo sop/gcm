@@ -1,7 +1,7 @@
 <?php
 
-use GCM\GHASH;
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\GHASH;
 
 /**
  * @group gcm

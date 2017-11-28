@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace GCM;
+namespace Sop\GCM;
 
-use GCM\Cipher\Cipher;
-use GCM\Exception\AuthenticationException;
+use Sop\GCM\Cipher\Cipher;
+use Sop\GCM\Exception\AuthenticationException;
 
 /**
  * Implements encryption and decryption in Galois/Counter Mode.

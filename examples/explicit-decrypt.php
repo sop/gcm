@@ -5,8 +5,8 @@
  * php explicit-encrypt.php | php explicit-decrypt.php
  */
 
-use GCM\GCM;
-use GCM\Cipher\AES\AES192Cipher;
+use Sop\GCM\GCM;
+use Sop\GCM\Cipher\AES\AES192Cipher;
 
 require dirname(__DIR__) . "/vendor/autoload.php";
 

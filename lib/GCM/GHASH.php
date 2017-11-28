@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace GCM;
+namespace Sop\GCM;
 
 /**
  * Implements GHASH function.

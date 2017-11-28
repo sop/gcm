@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace GCM\Cipher;
+namespace Sop\GCM\Cipher;
 
 /**
  * Interface for ciphers usable for GCM.

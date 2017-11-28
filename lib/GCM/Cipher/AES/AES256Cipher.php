@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace GCM\Cipher\AES;
+namespace Sop\GCM\Cipher\AES;
 
 /**
  * Implements AES cipher with 256-bit key size.
