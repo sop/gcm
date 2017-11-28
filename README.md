@@ -12,6 +12,12 @@ encryption.
 Supports AES-GCM with 128, 192 and 256-bit key sizes and specified
 authentication tag lengths.
 
+## Requirements
+
+-   PHP >=7.0
+-   openssl
+-   gmp
+
 ## Installation
 
 This library is available on
