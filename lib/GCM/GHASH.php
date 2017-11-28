@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM;
 
 /**
@@ -30,7 +32,7 @@ class GHASH
      *
      * @param string $subkey Hash subkey
      */
-    public function __construct($subkey)
+    public function __construct(string $subkey)
     {
         if (strlen($subkey) != 16) {
             throw new \LengthException("Subkey must be 128 bits.");
@@ -44,7 +46,7 @@ class GHASH
      * @param string $X Input string
      * @return string Hash
      */
-    public function compute($X)
+    public function compute(string $X): string
     {
         $len = strlen($X);
         if (0 != $len % 16) {
@@ -67,7 +69,7 @@ class GHASH
      * @param string $arg
      * @return string
      */
-    public function __invoke($arg)
+    public function __invoke(string $arg): string
     {
         return $this->compute($arg);
     }
@@ -81,7 +83,7 @@ class GHASH
      * @param string $Y
      * @return string
      */
-    private function _mult($X, $Y)
+    private function _mult(string $X, string $Y): string
     {
         $x = GCM::strToGMP($X);
         $Z = GCM::strToGMP(GCM::ZB_128);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM\Cipher\AES;
 
 use GCM\Cipher\Cipher;
@@ -29,14 +31,14 @@ abstract class AESCipher implements Cipher
      *
      * @return string
      */
-    abstract protected function _cipherName();
+    abstract protected function _cipherName(): string;
     
     /**
      * Get the key size in bytes.
      *
      * @return int
      */
-    abstract protected function _keySize();
+    abstract protected function _keySize(): int;
     
     /**
      * Get AES cipher instance by key length.
@@ -45,7 +47,7 @@ abstract class AESCipher implements Cipher
      * @throws \UnexpectedValueException
      * @return self
      */
-    public static function fromKeyLength($len)
+    public static function fromKeyLength(int $len): self
     {
         $bits = $len << 3;
         if (!array_key_exists($bits, self::MAP_KEYSIZE_TO_CLS)) {
@@ -63,7 +65,7 @@ abstract class AESCipher implements Cipher
      * @throws \RuntimeException For generic errors
      * @return string
      */
-    public function encrypt($data, $key)
+    public function encrypt(string $data, string $key): string
     {
         $key_size = $this->_keySize();
         if (strlen($key) != $key_size) {
@@ -84,9 +86,9 @@ abstract class AESCipher implements Cipher
      *
      * @return string
      */
-    protected static function _getLastOpenSSLError()
+    protected static function _getLastOpenSSLError(): string
     {
-        $msg = null;
+        $msg = '';
         while (false !== ($err = openssl_error_string())) {
             $msg = $err;
         }

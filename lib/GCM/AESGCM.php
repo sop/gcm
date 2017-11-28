@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM;
 
 use GCM\Cipher\AES\AESCipher;
@@ -18,7 +20,8 @@ abstract class AESGCM
      * @param string $iv Initialization vector
      * @return array Tuple of ciphertext and authentication tag
      */
-    public static function encrypt($plaintext, $aad, $key, $iv)
+    public static function encrypt(string $plaintext, string $aad, string $key,
+        string $iv): array
     {
         return self::_getGCM(strlen($key))->encrypt($plaintext, $aad, $key, $iv);
     }
@@ -35,7 +38,8 @@ abstract class AESGCM
      *         fails
      * @return string Plaintext
      */
-    public static function decrypt($ciphertext, $auth_tag, $aad, $key, $iv)
+    public static function decrypt(string $ciphertext, string $auth_tag,
+        string $aad, string $key, string $iv): string
     {
         return self::_getGCM(strlen($key))->decrypt($ciphertext, $auth_tag, $aad,
             $key, $iv);
@@ -47,7 +51,7 @@ abstract class AESGCM
      * @param int $keylen Key length in bytes
      * @return GCM
      */
-    protected static function _getGCM($keylen)
+    protected static function _getGCM(int $keylen): GCM
     {
         return new GCM(AESCipher::fromKeyLength($keylen));
     }

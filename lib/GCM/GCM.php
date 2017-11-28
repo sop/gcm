@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM;
 
 use GCM\Cipher\Cipher;
@@ -61,7 +63,7 @@ class GCM
      * @param int $tag_length Authentication tag length in bytes
      * @throws \DomainException If tag length is not supported
      */
-    public function __construct(Cipher $cipher, $tag_length = 16)
+    public function __construct(Cipher $cipher, int $tag_length = 16)
     {
         if (!in_array($tag_length << 3, self::SUPPORTED_T_LEN)) {
             throw new \DomainException(
@@ -82,7 +84,7 @@ class GCM
      * @return array Tuple of ciphertext <code>C</code> and authentication tag
      *         <code>T</code>
      */
-    public function encrypt($P, $A, $K, $IV)
+    public function encrypt(string $P, string $A, string $K, string $IV): array
     {
         $ghash = new GHASH($this->_cipher->encrypt(self::ZB_128, $K));
         // generate pre-counter block
@@ -106,7 +108,8 @@ class GCM
      * @throws \RuntimeException For generic errors
      * @return string Plaintext <code>P</code>
      */
-    public function decrypt($C, $T, $A, $K, $IV)
+    public function decrypt(string $C, string $T, string $A, string $K,
+        string $IV): string
     {
         $ghash = new GHASH($this->_cipher->encrypt(self::ZB_128, $K));
         // generate pre-counter block
@@ -130,7 +133,7 @@ class GCM
      * @param GHASH $ghash GHASH functor
      * @return string
      */
-    private function _generateJ0($IV, GHASH $ghash)
+    private function _generateJ0(string $IV, GHASH $ghash): string
     {
         // if len(IV) = 96
         if (12 == strlen($IV)) {
@@ -151,7 +154,7 @@ class GCM
      * @param string $K Encryption key
      * @return string Output data
      */
-    private function _gctr($ICB, $X, $K)
+    private function _gctr(string $ICB, string $X, string $K): string
     {
         // if data is an empty string, return an empty string
         if ("" == $X) {
@@ -188,7 +191,8 @@ class GCM
      * @param GHASH $ghash GHASH functor
      * @return string Authentication tag <code>T</code>
      */
-    private function _computeAuthTag($A, $C, $J0, $K, GHASH $ghash)
+    private function _computeAuthTag(string $A, string $C, string $J0, string $K,
+        GHASH $ghash): string
     {
         $data = self::_pad128($A) . self::_pad128($C) .
              self::_uint64(strlen($A) << 3) . self::_uint64(strlen($C) << 3);
@@ -219,7 +223,7 @@ class GCM
      * @param string $X
      * @return string
      */
-    private static function _inc32($X)
+    private static function _inc32(string $X): string
     {
         $Y = substr($X, 0, -4);
         // increment counter
@@ -235,7 +239,7 @@ class GCM
      * @param int $num
      * @return string
      */
-    private static function _uint64($num)
+    private static function _uint64(int $num): string
     {
         // truncate on 32 bit hosts
         if (PHP_INT_SIZE < 8) {
@@ -253,7 +257,7 @@ class GCM
      * @param string $data Binary data
      * @return \GMP
      */
-    public static function strToGMP($data)
+    public static function strToGMP(string $data): \GMP
     {
         return gmp_import($data, 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
     }
@@ -268,7 +272,7 @@ class GCM
      * @param int $size Width of the string in bytes
      * @return string Binary data
      */
-    public static function gmpToStr(\GMP $num, $size)
+    public static function gmpToStr(\GMP $num, int $size): string
     {
         $data = gmp_export($num, 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
         $len = strlen($data);

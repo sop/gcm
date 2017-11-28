@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM\Cipher\AES;
 
 /**
@@ -11,7 +13,7 @@ class AES256Cipher extends AESCipher
      *
      * {@inheritdoc}
      */
-    protected function _cipherName()
+    protected function _cipherName(): string
     {
         return "AES-256-ECB";
     }
@@ -20,7 +22,7 @@ class AES256Cipher extends AESCipher
      *
      * {@inheritdoc}
      */
-    protected function _keySize()
+    protected function _keySize(): int
     {
         return 32;
     }

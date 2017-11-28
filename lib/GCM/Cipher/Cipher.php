@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace GCM\Cipher;
 
 /**
@@ -14,5 +16,5 @@ interface Cipher
      * @param string $key Encryption key
      * @return string Encrypted data
      */
-    public function encrypt($data, $key);
+    public function encrypt(string $data, string $key): string;
 }
