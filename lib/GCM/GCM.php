@@ -117,7 +117,7 @@ class GCM
         // generate authentication tag
         $T2 = $this->_computeAuthTag($A, $C, $J0, $K, $ghash);
         // check that authentication tag matches
-        if ($T !== $T2) {
+        if (!hash_equals($T2, $T)) {
             throw new AuthenticationException("Authentication failed.");
         }
         // decrypt
