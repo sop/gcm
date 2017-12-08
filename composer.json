@@ -23,6 +23,7 @@
 	"require": {
 		"php": ">=7.0",
 		"ext-openssl": "*",
+		"ext-hash": "*",
 		"ext-gmp": "*"
 	},
 	"require-dev": {
