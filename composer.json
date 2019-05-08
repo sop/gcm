@@ -1,37 +1,39 @@
 {
-	"name": "sop/gcm",
-	"description": "A PHP library for Galois/Counter Mode encryption with AES.",
-	"homepage": "https://github.com/sop/gcm",
-	"license": "MIT",
-	"type": "library",
-	"keywords": [
-		"gcm",
-		"galois",
-		"galois counter mode",
-		"aes",
-		"aes-gcm",
-		"encrypt",
-		"decrypt"
-	],
-	"authors": [
-		{
-			"name": "Joni Eskelinen",
-			"email": "jonieske@gmail.com",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": ">=7.0",
-		"ext-openssl": "*",
-		"ext-hash": "*",
-		"ext-gmp": "*"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "^6.4"
-	},
-	"autoload": {
-		"psr-4": {
-			"Sop\\GCM\\": "lib/GCM/"
-		}
-	}
+    "name": "sop/gcm",
+    "description": "A PHP library for Galois/Counter Mode encryption with AES.",
+    "homepage": "https://github.com/sop/gcm",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "gcm",
+        "galois",
+        "galois counter mode",
+        "aes",
+        "aes-gcm",
+        "encrypt",
+        "decrypt"
+    ],
+    "authors": [
+        {
+            "name": "Joni Eskelinen",
+            "email": "jonieske@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2",
+        "ext-openssl": "*",
+        "ext-hash": "*",
+        "ext-gmp": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sop\\GCM\\": "lib/GCM/"
+        }
+    }
 }

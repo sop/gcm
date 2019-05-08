@@ -9,7 +9,7 @@ namespace Sop\GCM;
  *
  * This algorithm is specified in NIST SP-300-38D section 6.4.
  *
- * @link http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
+ * @see http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf
  */
 class GHASH
 {
@@ -19,14 +19,14 @@ class GHASH
      * @var string
      */
     const R = "\xE1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-    
+
     /**
      * Hash subkey.
      *
-     * @var string $_subkey
+     * @var string
      */
     protected $_subkey;
-    
+
     /**
      * Constructor.
      *
@@ -34,16 +34,29 @@ class GHASH
      */
     public function __construct(string $subkey)
     {
-        if (strlen($subkey) != 16) {
-            throw new \LengthException("Subkey must be 128 bits.");
+        if (16 != strlen($subkey)) {
+            throw new \LengthException('Subkey must be 128 bits.');
         }
         $this->_subkey = $subkey;
     }
-    
+
+    /**
+     * Functor method for <code>compute</code>.
+     *
+     * @param string $arg
+     *
+     * @return string
+     */
+    public function __invoke(string $arg): string
+    {
+        return $this->compute($arg);
+    }
+
     /**
      * Compute hash.
      *
      * @param string $X Input string
+     *
      * @return string Hash
      */
     public function compute(string $X): string
@@ -51,7 +64,7 @@ class GHASH
         $len = strlen($X);
         if (0 != $len % 16) {
             throw new \UnexpectedValueException(
-                "Input string must be a multiple of 128 bits.");
+                'Input string must be a multiple of 128 bits.');
         }
         $Y = GCM::ZB_128;
         // number of 128-bit blocks
@@ -62,18 +75,7 @@ class GHASH
         }
         return $Y;
     }
-    
-    /**
-     * Functor method for <code>compute</code>.
-     *
-     * @param string $arg
-     * @return string
-     */
-    public function __invoke(string $arg): string
-    {
-        return $this->compute($arg);
-    }
-    
+
     /**
      * Apply block multiplication operation.
      *
@@ -81,6 +83,7 @@ class GHASH
      *
      * @param string $X
      * @param string $Y
+     *
      * @return string
      */
     private function _mult(string $X, string $Y): string

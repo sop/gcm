@@ -10,16 +10,14 @@ namespace Sop\GCM\Cipher\AES;
 class AES192Cipher extends AESCipher
 {
     /**
-     *
      * {@inheritdoc}
      */
     protected function _cipherName(): string
     {
-        return "AES-192-ECB";
+        return 'AES-192-ECB';
     }
-    
+
     /**
-     *
      * {@inheritdoc}
      */
     protected function _keySize(): int

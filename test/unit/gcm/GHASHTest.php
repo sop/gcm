@@ -1,33 +1,35 @@
 <?php
 
+declare(strict_types = 1);
+
 use PHPUnit\Framework\TestCase;
 use Sop\GCM\GHASH;
 
 /**
  * @group gcm
  * @group ghash
+ *
+ * @internal
  */
 class GHASHTest extends TestCase
 {
-    const SUBKEY = "0123456789abcdef";
-    
-    const B = "0123456789abcdef";
-    
+    const SUBKEY = '0123456789abcdef';
+
+    const B = '0123456789abcdef';
+
     public function testCreate()
     {
         $ghash = new GHASH(self::SUBKEY);
         $this->assertInstanceOf(GHASH::class, $ghash);
         return $ghash;
     }
-    
-    /**
-     * @expectedException LengthException
-     */
+
     public function testCreateFail()
     {
-        new GHASH("fail");
+        $this->expectException(\LengthException::class);
+        new GHASH('fail');
     }
-    
+
     /**
      * @depends testCreate
      *
@@ -36,9 +38,9 @@ class GHASHTest extends TestCase
     public function testComputeOneBlock(GHASH $ghash)
     {
         $hash = $ghash->compute(self::B);
-        $this->assertInternalType("string", $hash);
+        $this->assertIsString($hash);
     }
-    
+
     /**
      * @depends testCreate
      *
@@ -47,20 +49,20 @@ class GHASHTest extends TestCase
     public function testComputeMultiBlock(GHASH $ghash)
     {
         $hash = $ghash->compute(self::B . self::B . self::B);
-        $this->assertInternalType("string", $hash);
+        $this->assertIsString($hash);
     }
-    
+
     /**
      * @depends testCreate
-     * @expectedException UnexpectedValueException
      *
      * @param GHASH $ghash
      */
     public function testInvalidLength(GHASH $ghash)
     {
-        $ghash->compute("fails");
+        $this->expectException(\UnexpectedValueException::class);
+        $ghash->compute('fails');
     }
-    
+
     /**
      * @depends testCreate
      *
@@ -68,6 +70,6 @@ class GHASHTest extends TestCase
      */
     public function testInvoke(GHASH $ghash)
     {
-        $this->assertInternalType("string", $ghash(self::B));
+        $this->assertIsString($ghash(self::B));
     }
 }

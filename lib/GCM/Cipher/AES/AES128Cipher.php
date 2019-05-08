@@ -10,16 +10,14 @@ namespace Sop\GCM\Cipher\AES;
 class AES128Cipher extends AESCipher
 {
     /**
-     *
      * {@inheritdoc}
      */
     protected function _cipherName(): string
     {
-        return "AES-128-ECB";
+        return 'AES-128-ECB';
     }
-    
+
     /**
-     *
      * {@inheritdoc}
      */
     protected function _keySize(): int

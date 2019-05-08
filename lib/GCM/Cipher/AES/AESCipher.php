@@ -18,33 +18,19 @@ abstract class AESCipher implements Cipher
      *
      * @var array
      */
-    const MAP_KEYSIZE_TO_CLS = array(
-        /* @formatter:off */
+    const MAP_KEYSIZE_TO_CLS = [
         128 => AES128Cipher::class,
         192 => AES192Cipher::class,
-        256 => AES256Cipher::class
-        /* @formatter:on */
-    );
-    
-    /**
-     * Get the cipher method name recognized by OpenSSL.
-     *
-     * @return string
-     */
-    abstract protected function _cipherName(): string;
-    
-    /**
-     * Get the key size in bytes.
-     *
-     * @return int
-     */
-    abstract protected function _keySize(): int;
-    
+        256 => AES256Cipher::class,
+    ];
+
     /**
      * Get AES cipher instance by key length.
      *
      * @param int $len Key length in bytes
+     *
      * @throws \UnexpectedValueException
+     *
      * @return self
      */
     public static function fromKeyLength(int $len): self
@@ -52,17 +38,18 @@ abstract class AESCipher implements Cipher
         $bits = $len << 3;
         if (!array_key_exists($bits, self::MAP_KEYSIZE_TO_CLS)) {
             throw new \UnexpectedValueException(
-                "No AES implementation for $bits-bit key size.");
+                "No AES implementation for ${bits}-bit key size.");
         }
         $cls = self::MAP_KEYSIZE_TO_CLS[$bits];
         return new $cls();
     }
-    
+
     /**
-     *
      * @see \Sop\GCM\Cipher\Cipher::encrypt()
+     *
      * @throws \UnexpectedValueException If key size is incorrect
-     * @throws \RuntimeException For generic errors
+     * @throws \RuntimeException         For generic errors
+     *
      * @return string
      */
     public function encrypt(string $data, string $key): string
@@ -70,17 +57,31 @@ abstract class AESCipher implements Cipher
         $key_size = $this->_keySize();
         if (strlen($key) != $key_size) {
             throw new \UnexpectedValueException(
-                "Key size must be $key_size bytes.");
+                "Key size must be ${key_size} bytes.");
         }
         $result = openssl_encrypt($data, $this->_cipherName(), $key,
             OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
         if (false === $result) {
             throw new \RuntimeException(
-                "openssl_encrypt() failed: " . self::_getLastOpenSSLError());
+                'openssl_encrypt() failed: ' . self::_getLastOpenSSLError());
         }
         return $result;
     }
-    
+
+    /**
+     * Get the cipher method name recognized by OpenSSL.
+     *
+     * @return string
+     */
+    abstract protected function _cipherName(): string;
+
+    /**
+     * Get the key size in bytes.
+     *
+     * @return int
+     */
+    abstract protected function _keySize(): int;
+
     /**
      * Get latest OpenSSL error message.
      *

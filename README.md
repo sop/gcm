@@ -14,8 +14,9 @@ authentication tag lengths.
 
 ## Requirements
 
--   PHP >=7.0
+-   PHP >=7.2
 -   openssl
+-   hash
 -   gmp
 
 ## Installation
