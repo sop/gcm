@@ -140,7 +140,9 @@ class GCM
      */
     public static function strToGMP(string $data): \GMP
     {
-        return gmp_import($data, 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
+        $num = gmp_import($data, 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
+        assert($num instanceof \GMP, new \RuntimeException('gmp_import() failed.'));
+        return $num;
     }
 
     /**
