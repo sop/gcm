@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 use PHPUnit\Framework\TestCase;
 use Sop\GCM\AESGCM;
+use Sop\GCM\Cipher\AES\AESCipher;
+use Sop\GCM\GCM;
 
 /**
  * Perform test vectors from GCM specification appendix B.
@@ -17,6 +19,27 @@ class NISTAESTestVectorsTest extends TestCase
     /**
      * @dataProvider provideCases
      *
+     * @param mixed $K  Key
+     * @param mixed $P  Plaintext
+     * @param mixed $A  Additional authenticated data
+     * @param mixed $IV Initialization vector
+     * @param mixed $C  Expected cipher text
+     * @param mixed $T  Expected authentication tag
+     */
+    public function testCaseImpl($K, $P, $A, $IV, $C, $T)
+    {
+        $cipher = AESCipher::fromKeyLength(strlen($K));
+        $gcm = new GCM($cipher);
+        [$ciphertext, $auth_tag] = $gcm->encrypt($P, $A, $K, $IV);
+        $this->assertEquals($C, $ciphertext);
+        $this->assertEquals($T, $auth_tag);
+        $plaintext = $gcm->decrypt($ciphertext, $auth_tag, $A, $K, $IV);
+        $this->assertEquals($P, $plaintext);
+    }
+
+    /**
+     * @dataProvider provideCases
+     *
      * @param mixed $K
      * @param mixed $P
      * @param mixed $A
@@ -24,7 +47,7 @@ class NISTAESTestVectorsTest extends TestCase
      * @param mixed $C
      * @param mixed $T
      */
-    public function testCase($K, $P, $A, $IV, $C, $T)
+    public function testCaseNative($K, $P, $A, $IV, $C, $T)
     {
         [$ciphertext, $auth_tag] = AESGCM::encrypt($P, $A, $K, $IV);
         $this->assertEquals($C, $ciphertext);

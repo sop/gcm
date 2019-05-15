@@ -14,7 +14,15 @@ class AES192Cipher extends AESCipher
      */
     protected function _cipherName(): string
     {
-        return 'AES-192-ECB';
+        return 'aes-192-ecb';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _nativeCipherName(): string
+    {
+        return 'aes-192-gcm';
     }
 
     /**

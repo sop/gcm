@@ -3,6 +3,7 @@
 declare(strict_types = 1);
 
 use PHPUnit\Framework\TestCase;
+use Sop\GCM\AESGCM;
 use Sop\GCM\Cipher\AES\AES128Cipher;
 use Sop\GCM\GCM;
 
@@ -24,13 +25,25 @@ class TagLengthTest extends TestCase
      *
      * @param mixed $tag_length
      */
-    public function testTagLength($tag_length)
+    public function testTagLengthImpl($tag_length)
     {
         $gcm = new GCM(new AES128Cipher(), $tag_length);
-        [$C, $T] = $gcm->encrypt(self::PLAINTEXT, self::AAD, self::KEY,
-            self::IV);
+        [$C, $T] = $gcm->encrypt(self::PLAINTEXT, self::AAD, self::KEY, self::IV);
         $this->assertEquals($tag_length, strlen($T));
         $plaintext = $gcm->decrypt($C, $T, self::AAD, self::KEY, self::IV);
+        $this->assertEquals(self::PLAINTEXT, $plaintext);
+    }
+
+    /**
+     * @dataProvider provideTagLength
+     *
+     * @param mixed $tag_length
+     */
+    public function testTagLengthNative($tag_length)
+    {
+        [$C, $T] = AESGCM::encrypt(self::PLAINTEXT, self::AAD, self::KEY, self::IV, $tag_length);
+        $this->assertEquals($tag_length, strlen($T));
+        $plaintext = AESGCM::decrypt($C, $T, self::AAD, self::KEY, self::IV);
         $this->assertEquals(self::PLAINTEXT, $plaintext);
     }
 

@@ -67,7 +67,7 @@ class GCM
     {
         if (!in_array($tag_length << 3, self::SUPPORTED_T_LEN)) {
             throw new \DomainException(
-                "Tag length ${tag_length} is not supported.");
+                "Tag length {$tag_length} is not supported.");
         }
         $this->_cipher = $cipher;
         $this->_tagLength = $tag_length;
@@ -83,8 +83,7 @@ class GCM
      *
      * @throws \RuntimeException For generic errors
      *
-     * @return array Tuple of ciphertext <code>C</code> and authentication tag
-     *               <code>T</code>
+     * @return array Tuple of ciphertext `C` and authentication tag `T`
      */
     public function encrypt(string $P, string $A, string $K, string $IV): array
     {
@@ -110,10 +109,9 @@ class GCM
      * @throws AuthenticationException If message authentication fails
      * @throws \RuntimeException       For generic errors
      *
-     * @return string Plaintext <code>P</code>
+     * @return string Plaintext `P`
      */
-    public function decrypt(string $C, string $T, string $A, string $K,
-        string $IV): string
+    public function decrypt(string $C, string $T, string $A, string $K, string $IV): string
     {
         $ghash = new GHASH($this->_cipher->encrypt(self::ZB_128, $K));
         // generate pre-counter block
@@ -179,11 +177,10 @@ class GCM
     private function _generateJ0(string $IV, GHASH $ghash): string
     {
         // if len(IV) = 96
-        if (12 == strlen($IV)) {
+        if (12 === strlen($IV)) {
             return $IV . "\0\0\0\1";
         }
-        $data = self::_pad128($IV) . self::ZB_64 . self::_uint64(
-            strlen($IV) << 3);
+        $data = self::_pad128($IV) . self::ZB_64 . self::_uint64(strlen($IV) << 3);
         return $ghash($data);
     }
 
@@ -201,7 +198,7 @@ class GCM
     private function _gctr(string $ICB, string $X, string $K): string
     {
         // if data is an empty string, return an empty string
-        if ('' == $X) {
+        if ('' === $X) {
             return '';
         }
         // number of blocks
@@ -234,7 +231,7 @@ class GCM
      * @param string $K     Encryption key
      * @param GHASH  $ghash GHASH functor
      *
-     * @return string Authentication tag <code>T</code>
+     * @return string Authentication tag `T`
      */
     private function _computeAuthTag(string $A, string $C, string $J0, string $K,
         GHASH $ghash): string
@@ -255,7 +252,7 @@ class GCM
     private static function _pad128(string $data): string
     {
         $padlen = 16 - strlen($data) % 16;
-        if (16 != $padlen) {
+        if (16 !== $padlen) {
             $data .= str_repeat("\0", $padlen);
         }
         return $data;

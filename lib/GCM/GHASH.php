@@ -34,14 +34,14 @@ class GHASH
      */
     public function __construct(string $subkey)
     {
-        if (16 != strlen($subkey)) {
+        if (16 !== strlen($subkey)) {
             throw new \LengthException('Subkey must be 128 bits.');
         }
         $this->_subkey = $subkey;
     }
 
     /**
-     * Functor method for <code>compute</code>.
+     * Functor method for `compute`.
      *
      * @param string $arg
      *
@@ -62,7 +62,7 @@ class GHASH
     public function compute(string $X): string
     {
         $len = strlen($X);
-        if (0 != $len % 16) {
+        if (0 !== $len % 16) {
             throw new \UnexpectedValueException(
                 'Input string must be a multiple of 128 bits.');
         }

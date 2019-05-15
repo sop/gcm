@@ -14,7 +14,15 @@ class AES128Cipher extends AESCipher
      */
     protected function _cipherName(): string
     {
-        return 'AES-128-ECB';
+        return 'aes-128-ecb';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _nativeCipherName(): string
+    {
+        return 'aes-128-gcm';
     }
 
     /**
