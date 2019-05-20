@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/sop/gcm.svg?branch=master)](https://travis-ci.org/sop/gcm)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sop/gcm/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sop/gcm/?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/sop/gcm/badge.svg?branch=master)](https://coveralls.io/github/sop/gcm?branch=master)
-[![License](https://poser.pugx.org/sop/gcm/license)](https://github.com/sop/gcm/blob/master/LICENSE)
-
 # GCM
+
+[![Build Status](https://travis-ci.org/sop/gcm.svg?branch=php70)](https://travis-ci.org/sop/gcm)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sop/gcm/badges/quality-score.png?b=php70)](https://scrutinizer-ci.com/g/sop/gcm/?branch=php70)
+[![Coverage Status](https://coveralls.io/repos/github/sop/gcm/badge.svg?branch=php70)](https://coveralls.io/github/sop/gcm?branch=php70)
+[![License](https://poser.pugx.org/sop/gcm/license)](https://github.com/sop/gcm/blob/php70/LICENSE)
 
 A PHP library for Galois/Counter Mode
 ([GCM](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf))
@@ -14,9 +14,9 @@ authentication tag lengths.
 
 ## Requirements
 
--   PHP >=7.0
--   openssl
--   gmp
+- PHP >=7.0
+- openssl
+- gmp
 
 ## Installation
 
@@ -45,7 +45,7 @@ Outputs:
     e0ce4d816a3f341f0062c6dc99b83692ad265fc4b34df2a3b593dfdb2ecdaed3
     9e2ffd7fa0df4d275ad0300416e23bdd
 
-See [`/examples`](https://github.com/sop/gcm/blob/master/examples/encrypt.php) for a detailed version.
+See [`/examples`](https://github.com/sop/gcm/blob/php70/examples/encrypt.php) for a detailed version.
 
 ### Decrypt
 
@@ -62,11 +62,11 @@ Outputs:
 
     Meet me at the pier at midnight.
 
-See [`/examples`](https://github.com/sop/gcm/blob/master/examples/decrypt.php) for a detailed version.
+See [`/examples`](https://github.com/sop/gcm/blob/php70/examples/decrypt.php) for a detailed version.
 
 ### Using explicit cipher method and tag length
 
-[Encrypt](https://github.com/sop/gcm/blob/master/examples/explicit-encrypt.php)
+[Encrypt](https://github.com/sop/gcm/blob/php70/examples/explicit-encrypt.php)
 a message without additional authenticated data using AES-192
 as an underlying cipher and produce a 104-bit (13 bytes) authentication tag.
 
@@ -84,7 +84,7 @@ Outputs:
     7bcd4e423016213c60a3c0a3e3fc0c
     027b14cfea0a2307649fc67b1d
 
-[Decrypting](https://github.com/sop/gcm/blob/master/examples/explicit-decrypt.php)
+[Decrypting](https://github.com/sop/gcm/blob/php70/examples/explicit-decrypt.php)
 the output from above.
 
 ```php
@@ -99,8 +99,8 @@ Outputs:
 
 ## References
 
--   [GCM Specification](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf)
--   [NIST Special Publication 800-38D](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf)
+- [GCM Specification](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf)
+- [NIST Special Publication 800-38D](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf)
 
 ## License
 
