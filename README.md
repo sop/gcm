@@ -1,9 +1,9 @@
+# GCM
+
 [![Build Status](https://travis-ci.org/sop/gcm.svg?branch=master)](https://travis-ci.org/sop/gcm)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sop/gcm/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sop/gcm/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/sop/gcm/badge.svg?branch=master)](https://coveralls.io/github/sop/gcm?branch=master)
 [![License](https://poser.pugx.org/sop/gcm/license)](https://github.com/sop/gcm/blob/master/LICENSE)
-
-# GCM
 
 A PHP library for Galois/Counter Mode
 ([GCM](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf))
@@ -14,10 +14,10 @@ authentication tag lengths.
 
 ## Requirements
 
--   PHP >=7.2
--   openssl
--   hash
--   gmp
+- PHP >=7.2
+- openssl
+- hash
+- gmp
 
 ## Installation
 
@@ -35,16 +35,16 @@ Here are some simple usage examples. Namespaces are omitted for brevity.
 Encrypt a message with additional authenticated data, using a 128-bit key.
 
 ```php
-list($ciphertext, $auth_tag) = AESGCM::encrypt(
-    "Meet me at the pier at midnight.",
-    "Additional info", "some 128 bit key", "random string");
+[$ciphertext, $auth_tag] = AESGCM::encrypt(
+    'Meet me at the pier at midnight.',
+    'Additional info', 'some 128 bit key', 'random iv-string');
 echo bin2hex($ciphertext) . "\n" . bin2hex($auth_tag);
 ```
 
 Outputs:
 
-    e0ce4d816a3f341f0062c6dc99b83692ad265fc4b34df2a3b593dfdb2ecdaed3
-    9e2ffd7fa0df4d275ad0300416e23bdd
+    5a24cfccf2e6c7763f71cd2ef6bcaa78385b16328593a93a43146d587e314ed8
+    389cc23f815d453686915530937d2053
 
 See [`/examples`](https://github.com/sop/gcm/blob/master/examples/encrypt.php) for a detailed version.
 
@@ -55,7 +55,7 @@ be the same, otherwise authentication fails and an exception shall be thrown.
 
 ```php
 $plaintext = AESGCM::decrypt($ciphertext, $auth_tag,
-    "Additional info", "some 128 bit key", "random string");
+    'Additional info', 'some 128 bit key', 'random iv-string');
 echo $plaintext;
 ```
 
@@ -72,11 +72,10 @@ a message without additional authenticated data using AES-192
 as an underlying cipher and produce a 104-bit (13 bytes) authentication tag.
 
 ```php
-$key = "012345678901234567890123"; // 192-bit encryption key
-$iv = hex2bin("beadfacebadc0fee"); // random initialization vector
+$key = '012345678901234567890123'; // 192-bit encryption key
+$iv = hex2bin('beadfacebadc0fee'); // random initialization vector
 $gcm = new GCM(new AES192Cipher(), 13);
-list($ciphertext, $auth_tag) = $gcm->encrypt(
-    "Secret message.", "", $key, $iv);
+[$ciphertext, $auth_tag] = $gcm->encrypt('Secret message.', '', $key, $iv);
 echo bin2hex($ciphertext) . "\n" . bin2hex($auth_tag);
 ```
 
@@ -89,8 +88,7 @@ Outputs:
 the output from above.
 
 ```php
-$plaintext = $gcm->decrypt(
-    $ciphertext, $auth_tag, "", $key, $iv);
+$plaintext = $gcm->decrypt($ciphertext, $auth_tag, '', $key, $iv);
 echo $plaintext;
 ```
 
@@ -100,8 +98,8 @@ Outputs:
 
 ## References
 
--   [GCM Specification](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf)
--   [NIST Special Publication 800-38D](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf)
+- [GCM Specification](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-spec.pdf)
+- [NIST Special Publication 800-38D](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf)
 
 ## License
 
