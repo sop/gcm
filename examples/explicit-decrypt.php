@@ -21,4 +21,4 @@ $key = '012345678901234567890123';
 $gcm = new GCM(new AES192Cipher(), 13);
 // decrypt and authenticate
 $plaintext = $gcm->decrypt($ciphertext, $auth_tag, '', $key, $iv);
-echo "${plaintext}\n";
+echo "{$plaintext}\n";

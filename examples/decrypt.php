@@ -21,4 +21,4 @@ $key = 'some 128 bit key';
     file('php://stdin', FILE_IGNORE_NEW_LINES));
 // decrypt and authenticate
 $plaintext = AESGCM::decrypt($ciphertext, $auth_tag, $aad, $key, $iv);
-echo "${plaintext}\n";
+echo "{$plaintext}\n";
