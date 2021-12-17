@@ -71,7 +71,10 @@ class GHASH
         $m = $len >> 4;
         for ($i = 0; $i < $m; ++$i) {
             $xi = substr($X, $i << 4, 16);
-            $Y = $this->_mult($Y ^ $xi, $this->_subkey);
+            // notes: Operands for `^`(bitwise `xor`) are two strings,
+            //        then the result will be a string.
+            // @see https://www.php.net/manual/en/language.operators.bitwise.php
+            $Y = $this->_mult((string)($Y ^ $xi), $this->_subkey);
         }
         return $Y;
     }
@@ -95,13 +98,13 @@ class GHASH
         for ($i = 0; $i < 128; ++$i) {
             // if bit at X[i] is set
             if (gmp_testbit($x, 127 - $i)) {
-                $Z ^= $V;
+                $Z = gmp_xor($Z, $V);
             }
             // if LSB(Vi) = 0
             if (!gmp_testbit($V, 0)) {
-                $V >>= 1;
+                $V = gmp_div($V, 2);
             } else {
-                $V = ($V >> 1) ^ $R;
+                $V = gmp_xor(gmp_div($V, 2), $R);
             }
         }
         return GCM::gmpToStr($Z, 16);

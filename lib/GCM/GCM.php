@@ -271,7 +271,7 @@ class GCM
     {
         $Y = substr($X, 0, -4);
         // increment counter
-        $n = self::strToGMP(substr($X, -4)) + 1;
+        $n = gmp_add(self::strToGMP(substr($X, -4)), 1);
         // wrap by using only the 32 rightmost bits
         $Y .= substr(self::gmpToStr($n, 4), -4);
         return $Y;
